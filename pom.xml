@@ -7,14 +7,15 @@
   </parent>
  
   <groupId>com.github.rumoel.rumoel.hub</groupId>
-  <artifactId>rumo-hub</artifactId>
+  <artifactId>rumo-hub-parent</artifactId>
  
   <packaging>pom</packaging>
  
   <name>root dir for hub{,-lib}</name>
   
   	<modules>
+		<module>rumo-hub-lib</module>
 		<module>rumo-hub-init</module>
-	</modules>
+  	</modules>
   
 </project>
