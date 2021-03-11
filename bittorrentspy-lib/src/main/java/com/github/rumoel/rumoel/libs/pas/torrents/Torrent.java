@@ -33,6 +33,6 @@ public class Torrent implements Serializable {
 	private CopyOnWriteArrayList<String> announceList = new CopyOnWriteArrayList<>();
 
 	@Getter
-	private CopyOnWriteArrayList<FileFTorrent> fileFTorrents = new CopyOnWriteArrayList<>();
+	private CopyOnWriteArrayList<FileInTorrent> fileFTorrents = new CopyOnWriteArrayList<>();
 
 }

@@ -21,14 +21,14 @@ public class MvcConfig implements WebMvcConfigurer {
 
 		registry.addViewController("/honeypots").setViewName("honeypots");
 
-		// PAS
+		// # PAS
 		registry.addViewController("/pas").setViewName("pas/IndexPas");
-		// PAS
-		// PAS-btsp
-		registry.addViewController("/pas/btsp").setViewName("pas/btsp/bittorrentSpy");
-		registry.addViewController("/pas/btsp/add").setViewName("pas/btsp/TorrentAdd");// TODO logic
-		registry.addViewController("/pas/btsp/torrent").setViewName("pas/btsp/TorrentPage");// TODO logic page
-		// PAS-btsp
+		// # PAS
+		// # PAS-btsp
 
+		/*
+		 * SEE CONTROLLERS FOR: /pas/btsp /pas/btsp/add
+		 */
+		// # PAS-btsp
 	}
 }

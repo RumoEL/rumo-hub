@@ -1,5 +1,7 @@
 package com.github.rumoel.hub.config;
 
+import java.io.File;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,5 +26,7 @@ public class RumoHubConfig {
 	@Getter
 	@Setter
 	private String dbPassword = "dbPass";
+	@Getter
+	private File torrentsDir = new File("torrentsDir");
 
 }

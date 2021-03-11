@@ -5,7 +5,7 @@ import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
 
-public class FileFTorrent implements Serializable {
+public class FileInTorrent implements Serializable {
 
 	private static final long serialVersionUID = -3819981565635747363L;
 	@Getter
