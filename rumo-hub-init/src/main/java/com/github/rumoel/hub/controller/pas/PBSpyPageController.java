@@ -60,7 +60,7 @@ public class PBSpyPageController {
 
 		for (MultipartFile multipartFile : multipartFiles) {
 			try {
-				fileStorage.store(multipartFile, username);
+				fileStorage.store(multipartFile, username, "torrents");
 				msgsOK.add(multipartFile.getOriginalFilename());
 			} catch (Exception e) {
 				msgsF.add(multipartFile.getOriginalFilename());

@@ -28,9 +28,9 @@ public class FileStorageImpl implements FileStorage {
 	private Path rootLocation = Paths.get("files");
 
 	@Override
-	public void store(MultipartFile file, String user) {
+	public void store(MultipartFile file, String user, String project) {
 		try {
-			File saveDir = rootLocation.resolve("aaa").toFile();
+			File saveDir = rootLocation.resolve(project).toFile();
 			if (!saveDir.exists()) {
 				saveDir.mkdirs();
 				saveDir.mkdir();
