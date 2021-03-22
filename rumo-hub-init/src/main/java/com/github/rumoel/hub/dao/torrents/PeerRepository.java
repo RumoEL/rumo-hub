@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.github.rumoel.rumoel.libs.pas.torrents.Peer;
-import com.github.rumoel.rumoel.libs.pas.torrents.Torrent;
+import com.github.rumoel.rumoel.libs.pas.torrents.peer.PeerInfo;
+import com.github.rumoel.rumoel.libs.pas.torrents.torrent.TorrentInfo;
 
 @Repository
-public interface PeerRepository extends CrudRepository<Peer, String> {
+public interface PeerRepository extends CrudRepository<PeerInfo, String> {
 
-	ArrayList<Peer> getAllPeersByTorrent(Torrent torrent);
+	ArrayList<PeerInfo> getAllPeersByTorrent(TorrentInfo torrent);
 }

@@ -1,6 +1,9 @@
 package com.github.rumoel.hub.header;
 
 import java.io.File;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 import org.springframework.boot.SpringApplication;
 
@@ -21,4 +24,14 @@ public class RumoHubHeader {
 	@Getter
 	@Setter
 	private static RumoHubConfig config = new RumoHubConfig();
+
+	// PAS-BITTORRENT-SPY
+	@Getter
+	private static ScheduledExecutorService pasBittorrentSpyExecutorServiceFiles = Executors.newScheduledThreadPool(10);
+	@Getter
+	private static ScheduledExecutorService pasBittorrentSpyExecutorServiceDB = Executors.newScheduledThreadPool(10);
+	@Getter
+	private ExecutorService pasBittorrentSpyExecutorServiceParse = Executors.newFixedThreadPool(10);
+	@Getter
+	private ExecutorService pasBittorrentSpyExecutorServiceSender = Executors.newFixedThreadPool(5);
 }

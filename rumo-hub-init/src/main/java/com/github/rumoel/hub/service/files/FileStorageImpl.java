@@ -1,11 +1,10 @@
-package com.github.rumoel.hub.service;
+package com.github.rumoel.hub.service.files;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.stream.Stream;
 
@@ -17,20 +16,26 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.github.rumoel.hub.header.RumoHubHeader;
+
 @Service
 public class FileStorageImpl implements FileStorage {
+	Logger logger = LoggerFactory.getLogger(this.getClass().getName());
+
+	public enum processedIf {
+		PROCESSED, NOPROCESSED
+	}
 
 	// format
-	// files/torrents/processed/$USER/fileName
-	// files/torrents/noprocessed/$USER/fileName
+	// files/$project/$processedIf/$USER/$fileName
+	// files/$project/$processedIf/$USER/$fileName
 
-	Logger log = LoggerFactory.getLogger(this.getClass().getName());
-	private Path rootLocation = Paths.get("files");
+	private Path rootLocation = RumoHubHeader.getROOTDIR().toPath().resolve("files");
 
 	@Override
-	public void store(MultipartFile file, String user, String project) {
+	public void store(MultipartFile file, processedIf noprocessed, String username, String project) {
 		try {
-			File saveDir = rootLocation.resolve(project).toFile();
+			File saveDir = rootLocation.resolve(project).resolve(noprocessed.toString()).resolve(username).toFile();
 			if (!saveDir.exists()) {
 				saveDir.mkdirs();
 				saveDir.mkdir();
@@ -44,9 +49,10 @@ public class FileStorageImpl implements FileStorage {
 	}
 
 	@Override
-	public Resource loadFile(String filename) {
+	public Resource loadFile(String filename, processedIf noprocessed, String username, String project) {
 		try {
-			Path file = rootLocation.resolve(filename);
+			Path file = rootLocation.resolve(project).resolve(noprocessed.toString()).resolve(username)
+					.resolve(filename);
 			Resource resource = new UrlResource(file.toUri());
 			if (resource.exists() || resource.isReadable()) {
 				return resource;

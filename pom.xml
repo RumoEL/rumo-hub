@@ -14,6 +14,7 @@
   <name>rumoel-hub-root</name>
   
   	<modules>
+		<module>rumo-common-lib</module>
 		<module>bittorrentspy-lib</module>
 		<module>rumo-hub-lib</module>
 		<module>rumo-hub-init</module>

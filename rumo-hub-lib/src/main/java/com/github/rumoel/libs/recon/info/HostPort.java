@@ -9,6 +9,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.github.rumoel.common.network.info.Protocol;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,10 +18,6 @@ import lombok.Setter;
 @Table(name = "hostport")
 public class HostPort implements Serializable {
 	private static final long serialVersionUID = -3885435248654748800L;
-
-	public enum protocol {
-		TCP, UDP
-	}
 
 	@Getter
 	@Setter
@@ -38,17 +36,16 @@ public class HostPort implements Serializable {
 	@Setter
 	@Column
 	private int port;
-
 	@Getter
 	@Setter
 	@Column
 	@Enumerated(EnumType.STRING)
-	private protocol proto;
+	private Protocol proto;
 
 	public HostPort() {
 	}
 
-	public HostPort(long timeToSet, String hostToSet, int portToSet, protocol proto) {
+	public HostPort(long timeToSet, String hostToSet, int portToSet, Protocol proto) {
 		setTime(timeToSet);
 		setHost(hostToSet);
 		setPort(portToSet);

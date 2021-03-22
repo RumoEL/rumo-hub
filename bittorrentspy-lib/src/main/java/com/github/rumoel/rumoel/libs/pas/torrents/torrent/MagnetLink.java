@@ -1,4 +1,4 @@
-package com.github.rumoel.rumoel.libs.pas.torrents;
+package com.github.rumoel.rumoel.libs.pas.torrents.torrent;
 
 import java.io.Serializable;
 
@@ -9,7 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-public class TrackerLink implements Serializable {
+public class MagnetLink implements Serializable {
 	private static final long serialVersionUID = 5537288600648358559L;
 
 	@Getter

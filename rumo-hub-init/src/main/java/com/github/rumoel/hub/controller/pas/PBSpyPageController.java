@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.github.rumoel.hub.service.FileStorage;
 import com.github.rumoel.hub.service.TorrentService;
+import com.github.rumoel.hub.service.files.FileStorage;
+import com.github.rumoel.hub.service.files.FileStorageImpl;
+import com.github.rumoel.hub.task.pas.btsp.TorrentParseTask;
 
 @Controller
 @RequestMapping("/pas/btsp")
@@ -53,22 +55,36 @@ public class PBSpyPageController {
 	@PostMapping("/add")
 	public ModelAndView uploadMultipartFile(@RequestParam("uploadfile") MultipartFile[] multipartFiles) {
 		ModelAndView mav = new ModelAndView("pas/btsp/tr/TorrentAdd");
-		ArrayList<String> msgsOK = new ArrayList<>();
-		ArrayList<String> msgsF = new ArrayList<>();
+
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String username = auth.getName();
 
+		ArrayList<String> msgsOK = new ArrayList<>();
+		ArrayList<String> msgsF = new ArrayList<>();
+
 		for (MultipartFile multipartFile : multipartFiles) {
 			try {
-				fileStorage.store(multipartFile, username, "torrents");
-				msgsOK.add(multipartFile.getOriginalFilename());
+				TorrentParseTask torrentParseTask = new TorrentParseTask();
+				torrentParseTask.setData(multipartFile.getBytes());
+				torrentParseTask.execute();
+
 			} catch (Exception e) {
-				msgsF.add(multipartFile.getOriginalFilename());
 				e.printStackTrace();
+
+				try {
+					fileStorage.store(multipartFile, FileStorageImpl.processedIf.NOPROCESSED, username, "torrents");
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
 			}
+			msgsOK.add(multipartFile.getOriginalFilename());
+			msgsF.add(multipartFile.getOriginalFilename());
+
 		}
+
 		mav.addObject("message",
 				"Status: OK:" + Arrays.toString(msgsOK.toArray()) + " FAIL:" + Arrays.toString(msgsF.toArray()));
+
 		return mav;
 	}
 
