@@ -9,16 +9,26 @@ public class MvcConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
+
 		registry.addViewController("/").setViewName("index");
+		registry.addViewController("/about").setViewName("about");
 
 		registry.addViewController("/register").setViewName("register");
 		registry.addViewController("/login").setViewName("login");
 		registry.addViewController("/profile").setViewName("profile");
 
-		registry.addViewController("/about").setViewName("about");
 		registry.addViewController("/vkBots").setViewName("vkBots");
 
 		registry.addViewController("/honeypots").setViewName("honeypots");
 
+		// # PAS
+		registry.addViewController("/pas").setViewName("pas/IndexPas");
+		// # PAS
+		// # PAS-btsp
+
+		/*
+		 * SEE CONTROLLERS FOR: /pas/btsp /pas/btsp/add
+		 */
+		// # PAS-btsp
 	}
 }

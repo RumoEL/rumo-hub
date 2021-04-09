@@ -15,7 +15,8 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.github.rumoel.hub.config.RumoHubConfig;
 import com.github.rumoel.hub.header.RumoHubHeader;
 
-@EntityScan(basePackages = { "com.github.rumoel.libs.core.model", "com.github.rumoel.libs.recon.info" })
+@EntityScan(basePackages = { "com.github.rumoel.libs.core.model", "com.github.rumoel.libs.recon.info",
+		"com.github.rumoel.rumoel.libs.pas.torrents" })
 @SpringBootApplication
 public class RumoelHubApplication {
 	Logger logger = LoggerFactory.getLogger(getClass());

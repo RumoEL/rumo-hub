@@ -7,4 +7,5 @@ import com.github.rumoel.libs.recon.info.HostPort;
 
 @Repository
 public interface HostPortRepository extends CrudRepository<HostPort, String> {
+
 }

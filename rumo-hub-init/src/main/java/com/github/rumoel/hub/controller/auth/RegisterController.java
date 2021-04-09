@@ -1,4 +1,4 @@
-package com.github.rumoel.hub.controller;
+package com.github.rumoel.hub.controller.auth;
 
 import java.util.Collections;
 import java.util.Map;

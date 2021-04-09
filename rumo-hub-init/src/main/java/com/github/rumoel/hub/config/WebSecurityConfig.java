@@ -27,10 +27,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.
 		//
-				csrf().ignoringAntMatchers("/api/insecure/**").and().
+				csrf().ignoringAntMatchers("/api/insecure/**", "/pas/btsp/add").and().
 
 				//
-				authorizeRequests().antMatchers(HttpMethod.POST, "/api/**", "/api/recon").permitAll().and().
+				authorizeRequests().antMatchers(HttpMethod.POST, "/api/**", "/api/recon", "/pas/btsp/add").permitAll()
+				.and().
 				//
 				authorizeRequests().antMatchers("/", "/about", "/register").permitAll().and()
 				//
