@@ -47,7 +47,7 @@ public class PeerInfo implements Serializable {
 	// @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@ElementCollection
 	@CollectionTable(name = "peerlists", joinColumns = @JoinColumn(name = "peerinfo_id"))
-	private List<PeerCounter> peerCounters = new ArrayList();
+	private List<PeerCounter> peerCounters = new ArrayList<>();
 
 	@Override
 	public String toString() {

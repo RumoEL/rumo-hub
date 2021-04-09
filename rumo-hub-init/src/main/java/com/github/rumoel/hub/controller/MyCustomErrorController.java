@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MyCustomErrorController implements ErrorController {
+	String errorLink = "/error";
 
 	@RequestMapping("/error")
 	@ResponseBody
@@ -21,8 +22,7 @@ public class MyCustomErrorController implements ErrorController {
 				statusCode, exception == null ? "N/A" : exception.getMessage());
 	}
 
-	@Override
 	public String getErrorPath() {
-		return "/error";
+		return errorLink;
 	}
 }

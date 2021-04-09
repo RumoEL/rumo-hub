@@ -1,6 +1,7 @@
 package com.github.rumoel.rumoel.libs.pas.torrents.report;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -51,7 +52,7 @@ public class ReportForTorrentPeer implements Serializable {
 		return builder.toString();
 	}
 
-	public static void correctAddtoPeerList(CopyOnWriteArrayList<PeerInfo> list, PeerInfo peerInfo) {
+	public static void correctAddtoPeerList(List<PeerInfo> list, PeerInfo peerInfo) {
 		if (list.isEmpty()) {
 			list.add(peerInfo);
 		} else {
@@ -61,7 +62,7 @@ public class ReportForTorrentPeer implements Serializable {
 		}
 	}
 
-	private static boolean peerInList(CopyOnWriteArrayList<PeerInfo> list, PeerInfo peerInfo) {
+	private static boolean peerInList(List<PeerInfo> list, PeerInfo peerInfo) {
 		for (PeerInfo peerInfoTest : list) {
 			if (peerInfoIsPeerIf(peerInfoTest, peerInfo)) {
 				return true;
